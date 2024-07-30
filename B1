@@ -1,0 +1,48 @@
+class Fraction {
+  int numerator;
+  int denominator;
+
+  Fraction(this.numerator, this.denominator);
+
+  // Override operator +
+  Fraction operator +(Fraction other) {
+    int newNumerator = numerator * other.denominator + other.numerator * denominator;
+    int newDenominator = denominator * other.denominator;
+    return Fraction(newNumerator, newDenominator);
+    }
+  Fraction operator -(Fraction other) {
+    int newNumerator = numerator * other.denominator - other.numerator * denominator;
+    int newDenominator = denominator * other.denominator;
+    return Fraction(newNumerator, newDenominator);
+  }
+  Fraction operator *(Fraction other) {
+    int newNumerator = numerator * other.numerator ;
+    int newDenominator = denominator * other.denominator;
+    return Fraction(newNumerator, newDenominator);
+  }
+  Fraction operator /(Fraction other) {
+    int newNumerator = numerator * other.denominator ;
+    int newDenominator = denominator * other.numerator;
+    return Fraction(newNumerator, newDenominator);
+  }
+  bool operator <(Fraction other) {
+    int newNumerator = numerator * other.denominator;
+    int otherNumerator = other.numerator * denominator;
+    return newNumerator < otherNumerator;
+  }
+  bool operator <=(Fraction other) {
+    int newNumerator = numerator * other.denominator;
+    int otherNumerator = other.numerator * denominator;
+    return newNumerator <= otherNumerator;
+  }
+}
+void main() {
+  Fraction f1 = Fraction(1, 8);
+  Fraction f2 = Fraction(1, 1);
+
+  Fraction sum = f1 + f2;print("tong:${sum.numerator},${sum.denominator}");
+  Fraction odd = f1 + f2;print("hieu:${sum.numerator},${sum.denominator}");
+  Fraction mul = f1 + f2;print("tich:${sum.numerator},${sum.denominator}");
+  Fraction dev = f1 + f2;print("thuong:${sum.numerator},${sum.denominator}");
+  print("so sanh f1<f2${f1<f2}");
+}
