@@ -1,0 +1,57 @@
+class Node {
+  final dynamic data;
+  Node? next;
+  Node(this.data);
+}
+class Stack {
+  Node? _top;
+  //add 1 phan tu vao dau stack
+  void push(dynamic data) {
+    Node newNode = Node(data);
+    newNode.next = _top;
+    _top = newNode;
+  }
+  //lay 1 phan tu trong stack ra
+  dynamic pop() {
+    if (_top == null) {
+      throw Exception('Stack is empty');
+    }
+    var data = _top!.data;
+    _top = _top!.next;
+    return data;
+  }
+  //check null
+  bool isEmpty() {
+    return _top == null;
+  }
+  //lay ra gia tri phan tu dau cua stack
+  dynamic top() {
+    return _top!.data;
+  }
+}
+bool check(String s) {
+  Stack st=new Stack();
+  for (int i = 0; i < s.length; i++) {
+    //neu gia tri xet cung loai voi gia tri dau tien tren dinh stack=>xoa gia tri do di
+    //dk st !isEmpty de phong khi st rong thi st.top=null ma khong the so sanh null voi String =>error
+    if (s[i] == '}' && !st.isEmpty() && st.top() == '{')
+      st.pop();
+    else if (s[i] == ']' && !st.isEmpty() && st.top() == '[')
+      st.pop();
+    else if (s[i] == ')' && !st.isEmpty() && st.top() == '(')
+      st.pop();
+    else {
+      st.push(s[i]);
+    }
+  }
+  if (st.isEmpty()) {
+    return true;
+  }
+  return false;
+}
+
+void main() {
+  print(check("{}()")); // Output: true
+  print(check("{(})")); // Output: false
+  print(check("{()})")); // Output: false
+}
